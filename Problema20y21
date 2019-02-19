@@ -1,0 +1,55 @@
+package calculadora;
+
+import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
+import static javafx.scene.input.KeyCode.T;
+
+public class Calculadora {
+    
+    
+    
+    public static int aBinario(int num){
+        PilaA<Integer> pila = new PilaA();
+          String binario = "";           
+        while (num > 0) {
+            pila.push(num % 2);
+            num /=2;
+        }
+        while (!pila.isEmpty()){
+            binario += pila.pop();
+        }
+        return Integer.parseInt(binario);
+        
+    }
+    
+    public static String multiPopPrueba(int num){
+        PilaA<Integer> pila = new PilaA();
+        String binario = "";  
+        int po2 = 1;
+        for (int i = 0; i < 5; i++) {
+             pila.push(po2);
+             po2 *= 2;
+        }
+        pila.multiPop(num);
+        
+        if(pila.isEmpty())
+            binario = "Está vacía";
+        else {
+             while (!pila.isEmpty()){
+            binario += pila.pop() + " ";
+        }
+        }
+       
+        
+        return binario;
+        
+    }
+
+    public static void main(String[] args) {
+        
+        System.out.println(aBinario(23));
+        System.out.println(multiPopPrueba(2));
+    }
+    
+    
+    
+}
