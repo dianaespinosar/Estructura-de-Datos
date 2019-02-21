@@ -1,9 +1,12 @@
 package problema10;
 
-public abstract class Camion {
+import java.io.Serializable;
+
+public abstract class Camion implements Serializable {
     private String marca;
     private String numMotor;
     private String placas;
+    private double costoCamion;
     
     public Camion(){
         
@@ -15,10 +18,20 @@ public abstract class Camion {
         this.placas = placas;
         
     }
+    
+    public  Camion (String marca, String numMotor, String placas, double costoCamion) {
+        this.marca = marca;
+        this.numMotor = numMotor;
+        this.placas = placas;
+        this.costoCamion = costoCamion;
+        
+    }
+    
     public String toString(){
         StringBuilder res = new StringBuilder();
         res.append("Marca: " + marca + "\nNúmero de motor: " + numMotor);
         res.append("\nPlacas : " + placas);
+        
         
         return res.toString();
     }
@@ -41,6 +54,12 @@ public abstract class Camion {
     public String getPlacas() {
         return placas;
     }
+
+    public double getCostoCamion() {
+        return costoCamion;
+    }
+    
+    
     
     
     
