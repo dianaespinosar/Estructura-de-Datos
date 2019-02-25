@@ -26,17 +26,17 @@ public class Triangulo implements FigGeometrica{
    
     public double calculaArea(){
         double s = calculaPerim()/2;
-        double area = Math.sqrt(s * (s-l1) * (s-l2) * (s-l3));
-        return (l1*l2)/2;
+        double area = Math.sqrt(s * (s - l1) * (s - l2) * (s - l3));
+        return area;
     }
     
     public double calculaPerim(){
-        return l1+l2+l3;
+        return l1 + l2 + l3;
     }
     
     public void imprime(){
-        System.out.println("Área: "+calculaArea());
-        System.out.println("Perímetro: "+calculaPerim()+"\n");
+        System.out.println("Área: " + calculaArea());
+        System.out.println("Perímetro: " + calculaPerim() + "\n");
     }
     
     public String toString() {
