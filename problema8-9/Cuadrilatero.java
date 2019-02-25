@@ -43,7 +43,7 @@ public abstract class Cuadrilatero implements FigGeometrica{
     @Override
     public boolean equals(Object obj) {
         boolean ans = false;
-       if(obj != null && obj instanceof Triangulo){
+       if(obj != null && obj instanceof Cuadrilatero){
            Cuadrilatero t = (Cuadrilatero)obj;
            ans = lado1 == t.lado1 && lado2 == t.lado2;
        }
