@@ -60,7 +60,4 @@ public abstract class Camion implements Serializable {
     }
     
     
-    
-    
-    
 }
