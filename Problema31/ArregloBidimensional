@@ -1,0 +1,70 @@
+package arreglobidimensional;
+
+import static javafx.scene.input.KeyCode.T;
+
+public class ArregloBidimensional  <T extends Comparable <T>> {
+    private T[][] matriz;
+    private int[] totales;
+    private final int MAX_RE = 20;
+    private final int MAX_COL = 20;
+    
+    public ArregloBidimensional(){
+        totales = new int[MAX_RE];
+        for(int i = 0; i < MAX_RE; i++)
+            totales[i] = 0;
+       
+        matriz = (T[][]) new Comparable[MAX_RE][MAX_COL];
+        
+    }
+    public double sumaRenglon(int i){
+        if(i >= 0 && i < MAX_RE)
+            return sumaRenglon(i, 0);
+        else 
+            throw new exception ;
+        
+    }
+    
+    private double sumaRenglon(int i, int j){
+        if(j == totales[i])
+            return 0;
+        else
+            return sumaRenglon(int i, j + 1) +  matriz[i][j];
+    }
+    
+     public double sumaCol(int j){
+        if(j >= 0 && j < MAX_COL)
+            return sumaCol(0, j);
+        else 
+            throw new exception ;
+        
+    }
+    
+    private double sumaCol(int i, int j){
+        if(i == MAX_RE)
+            return 0;
+        else
+            return sumaCol(int i + 1, j) +  matriz[i][j];
+    }
+        
+    
+    public String toString(){
+        return toString();
+        
+    }
+    
+    private String toString(){
+        StringBuilder res = new StringBuilder();
+        for(int i = 0; i < MAX_RE; i++){
+            for(int j = 0; j < totales[j]; j++){
+                res.append(matriz[i][j] + " ");
+            }
+            res.append("\n");
+        }
+    }
+    
+    
+    public static void main(String[] args) {
+        // TODO code application logic here
+    }
+    
+}
