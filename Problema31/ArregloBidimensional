@@ -123,6 +123,22 @@ public static double sumaDiagonal(double[][] matriz, int tRen, int tCol) throws 
          
      }
      
-     public static int cuantaPalabras(String nomArchivo){
+     private static double sumaMatrices(double[][] matriz1, double[][] matriz2,
+             int tRen, int tCol){
          
+     }
+     
+     public static int cuantaPalabras(String nomArchivo){
+         try {
+			File file = new File(nomArchivo);
+			Scanner leeArch = new Scanner(file);
+			
+			
+			leeArch.close();
+			
+		}
+		
+		catch(Exception e) {
+		 salida = "No se puedo abrir.";
+		}
      }
