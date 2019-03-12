@@ -68,3 +68,61 @@ public class ArregloBidimensional  <T extends Comparable <T>> {
     }
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public static double sumaDiagonal(double[][] matriz, int tRen, int tCol) throws Exception{
+        if(matriz != null && tRen <= matriz.length && tCol <= matriz[0].length 
+                && tRen == tCol){
+            return sumaDiagonal(0, matriz, tRen);
+        }
+        else
+            throw new Exception();
+            
+    }
+    
+     private static double sumaDiagonal(int i, double[][] matriz, int tRen){
+         if(i < tRen)
+             return sumaDiagonal(i + 1, matriz, tRen) + matriz[i][i];
+         else
+             return 0;
+     }
+     
+     public static double sumaMatrices(double[][] matriz1, int tRen1, int tCol1,
+             double[][] matriz2, int tRen2, int tCol2) throws Exception{
+        if(matriz1 != null && tRen1 <= matriz1.length && tCol1 <= matriz1[0].length 
+                && tRen1 == tRen2 && matriz2 != null && tRen2 <= matriz2.length 
+                && tCol2 <= matriz2[0].length && tCol1 == tCol2){
+            return sumaMatrices(matriz1, matriz2, tRen1, tCol1);
+        }
+        else
+            throw new Exception();
+            
+    }
+     
+     private static double sumaMatrices(double[][] matriz1, double[][] matriz2,
+             int tRen, int tCol){
+         
+     }
+     
+     public static int cuantaPalabras(String nomArchivo){
+         
+     }
