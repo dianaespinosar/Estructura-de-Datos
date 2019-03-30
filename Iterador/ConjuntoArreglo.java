@@ -103,15 +103,40 @@ public class ConjuntoArreglo <T> implements ConjuntoADT<T> {
     }
 
     public ConjuntoADT<T> union(ConjuntoADT<T> otro) {
-        if(otro == null)
-            throw new NullPointerException();
-        int max = cardinalidad + otro.getCardinalidad();
-        ConjuntoArreglo <T> res = new ConjuntoArreglo(max);
-        for(int i = 0; i < cardinalidad; i++)
-            res.conjunto[i] = conjunto[i];
-        Iterator<T> it = otro.iterator();
-        
-    }
+       
+       if(otro == null)
+           throw new NullPointerException();
+       
+       int max = cardinalidad + otro.getCardinalidad();
+       ConjuntoArreglo <T> res = new ConjuntoArreglo(max);
+       
+       for(int i = 0; i < cardinalidad; i++)
+           res.conjunto[i] = conjunto[i];
+       Iterator<T> it = otro.iterator();
+       while(it.hasNext())
+         res.agrega(it.next());
+      
+       return res;
+       
+   }
+   
+   public ConjuntoADT interseccion(ConjuntoADT otro){
+       T aux;
+       int max = Math.min(cardinalidad, otro.getCardinalidad());
+       Iterator<T> it = otro.iterator();
+       ConjuntoArreglo <T> res = new ConjuntoArreglo(max);
+       if(otro == null)
+           throw new NullPointerException();
+       
+       while(it.hasNext()){
+           aux = it.next();
+           if(contiene(aux))
+               res.agrega(aux);
+       }
+       return res;
+       
+   }
+    
     
    
 }
