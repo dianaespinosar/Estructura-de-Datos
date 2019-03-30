@@ -10,4 +10,7 @@ public interface ConjuntoADT <T> extends Iterable<T> {
     public int getCardinalidad();
     public boolean isEmpty();
     public ConjuntoADT<T> union (ConjuntoADT <T> otro);   
+    public ConjuntoADT<T> interseccion (ConjuntoADT <T> otro);
+    public ConjuntoADT<T> diferencia (ConjuntoADT <T> otro);
+    public String toString();
 }
