@@ -136,7 +136,33 @@ public class ConjuntoArreglo <T> implements ConjuntoADT<T> {
        return res;
        
    }
-    
+   
+   public ConjuntoADT<T> diferencia(ConjuntoADT<T> otro) {
+        T aux;
+        if(otro == null)
+            throw new NullPointerException();
+
+        ConjuntoArreglo <T> res = new ConjuntoArreglo(cardinalidad);
+
+        for(int i = 0; i < cardinalidad; i++)
+            res.agrega(conjunto[i]);
+        Iterator<T> it = otro.iterator();
+        while(it.hasNext()){
+            aux = it.next();
+            res.quita(aux);
+        }
+
+           return res;
+    }
+
+    public String toString() {
+        StringBuilder res = new StringBuilder();
+            for(int i = 0; i < cardinalidad; i++){
+                res.append(conjunto[i]).append("  ");
+            }  
+        return res.toString();
+
+    }
     
    
 }
