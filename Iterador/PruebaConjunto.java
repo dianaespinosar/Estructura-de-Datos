@@ -7,7 +7,7 @@ public class PruebaConjunto {
         double suma = 0;
         ConjuntoADT <String> conj1 = (ConjuntoADT <String>) new ConjuntoArreglo();
         ConjuntoADT <Double> conj2 = (ConjuntoADT <Double>) new ConjuntoArreglo();
-
+        ConjuntoADT <String> conj3 = (ConjuntoADT <String>) new ConjuntoArreglo();
         conj1.agrega("azul");
         conj1.agrega("rojo");
         conj1.agrega("verde");
@@ -29,5 +29,14 @@ public class PruebaConjunto {
         while(it.hasNext())
             suma += it.next();
         System.out.println(suma);
+        
+        conj3.agrega("azul");
+        conj3.agrega("amarillo");
+        conj3.agrega("verde");
+        conj3.agrega("rosa");
+        conj3.agrega("violeta");
+        System.out.println(conj1.union(conj3).toString());
+        System.out.println(conj1.interseccion(conj3).toString());
+        System.out.println(conj3.diferencia(conj1).toString()); 
     }
 }
