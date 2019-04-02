@@ -166,3 +166,107 @@ public class ConjuntoArreglo <T> implements ConjuntoADT<T> {
     
    
 }
+
+
+
+
+
+
+
+Código intento con conjuntos
+
+
+public static ConjuntoArreglo posiblesNumeros(int[][] sudoku, int iBase, int jBase){
+        
+        ConjuntoArreglo res = new ConjuntoArreglo(9);
+        
+        if(sudoku[iBase][jBase] == 0){
+            for(int k = 1; k < 10; k++){
+            res.agrega(k);
+            }
+
+            int i = (iBase + 1) % 9;
+            int j = (jBase + 1) % 9;
+            int m1 = iBase / 3;
+            int m2 = jBase / 3;
+            int r1 = iBase % 3;
+            int r2 = iBase % 3;
+            int a = 3 * m1 + ((r1 + 1) % 3);
+            int b = 3 * m2 + ((r2 + 1) % 3);
+            int c = 3 * m1 + ((r1 + 2) % 3);
+            int d = 3 * m2 + ((r2 + 2) % 3);
+
+            while (i != iBase){
+                res.quita(sudoku[i][jBase]);
+                i = (i + 1) % 9;
+            }
+
+            while(j != jBase ){
+                res.quita(sudoku[iBase][j] );
+                j = (j + 1) % 9;
+            }
+        
+            res.quita(sudoku[a][b]);
+            res.quita(sudoku[a][d]);
+            res.quita(sudoku[c][b]);
+            res.quita(sudoku[c][d]);
+       
+        }
+        else
+            res.agrega(sudoku[iBase][jBase]);
+        return res;
+    }
+
+
+public static boolean pasaMatriz(int[][] sudoku){
+        Iterator it = null;
+        if(sudoku != null)
+            return pasaMatriz(sudoku, 0, 0, it);
+        else
+            return false;
+    }
+    
+    
+    private static boolean pasaMatriz(int[][]sudoku, int i, int j, Iterator it){
+        //System.out.println("i = " + i + "\n");
+        ConjuntoArreglo res = new ConjuntoArreglo();
+        if(i <9){
+            //System.out.println("j = " + j + "\n");
+            if(j < 9){
+                //System.out.println(" sudoku[i][j] = " + sudoku[i][j] + "\n");
+                if(sudoku[i][j] == 0){
+                    res = posiblesNumeros(sudoku, i, j);
+                    it = res.iterator();
+                    if(it.hasNext()){
+                        sudoku[i][j] = (int) it.next();
+                        if(!pasaMatriz(sudoku, i, j + 1, it)){
+                            sudoku[i][j] = 0;
+                            return pasaMatriz(sudoku, i, j,it);
+                        }
+                    }
+                    else
+                        return false;
+                }
+                else
+                    return pasaMatriz(sudoku, i, j + 1, it);
+                
+                
+            }
+            
+            else{
+                
+                return pasaMatriz(sudoku, i + 1, 0, it);
+            }
+                
+        }
+        return true;
+        
+    }
+
+
+
+
+
+
+
+
