@@ -1,5 +1,10 @@
 package ptscticar;
 
+import java.util.Iterator;
+import java.util.Spliterator;
+import java.util.function.Consumer;
+import static javafx.scene.input.KeyCode.T;
+
 public class Ptscticar {
 
     public static String imprimeZigZag(int[][] sudoku, int tRen, int tCol){
@@ -89,6 +94,58 @@ public class Ptscticar {
         return res.toString();
     }
     
+    public static  boolean analizaDeportivos(ConjuntoArreglo cA, int n){
+        if(cA != null ){
+            Iterator it = cA.iterator();
+            return analizaDeportivos(it, n, 0, false);
+        }
+        else 
+            return false;
+    }
+    
+     private static  boolean analizaDeportivos(Iterator it, int n, int cuenta, boolean res){
+         Auto aux;
+         if(!res && cuenta < n && it.hasNext()){
+             aux = (Auto) it.next();
+             if(aux.getMarca().equalsIgnoreCase("Audi") && aux.getPrecio() > 215000)
+                 return analizaDeportivos(it, n, cuenta + 1, n == cuenta + 1);
+             else
+                 return analizaDeportivos(it, n, cuenta, res);
+         }
+         return res;
+     }
+     
+     public static <T> boolean noHayVeinosIguales(ColaA a){
+        ColaA aux = new ColaA();
+        T num;
+        boolean res;
+        if(a != null && !a.estaVacia()){
+            num = (T) a.quita();
+            aux.agrega(num);
+            res = noHayVecinosIguales(a, aux, true, num);
+            cola(aux, a);
+            cola(a, aux);
+            return res;
+        }
+        else
+            return true;
+    }
+     
+     private static void cola(ColaA a, ColaA aux){
+         if(!aux.estaVacia()){
+             a.agrega(aux.quita());
+             cola(a, aux);
+         }
+     }
+     private static <T> boolean noHayVecinosIguales(ColaA a, ColaA aux, boolean res, T num){
+         T auxi;
+         if(res && !a.estaVacia()){
+             auxi = (T) a.quita();
+             aux.agrega(auxi);
+             return noHayVecinosIguales(a, aux, auxi != num, auxi);
+         }
+         return res;
+     }
     
     public static void main(String[] args) {
         int [][] sudoku = { {1, 5, 0, 6, 0, 3, 0, 2, 9},
@@ -101,7 +158,43 @@ public class Ptscticar {
                             {0, 8, 0, 0, 0, 0, 0, 4, 0},
                             {0, 6, 9, 0, 0, 0, 8, 0, 0}};
 
-        System.out.println(imprimeEspiral(sudoku, 3, 3));
-    }
-    
+        //System.out.println(imprimeEspiral(sudoku, 3, 3));
+        /*
+        Auto a = new Auto( "BMW", 'r', 2016, 123456);
+        Auto b = new Auto("Audi", 'a', 2017, 234567);
+        Auto c = new Auto("Nissan", 'n', 2017, 200000);
+        Auto d = new Auto("Audi", 'g', 2805, 199999);
+        Auto e = new Auto("Nissan", 'b', 2013, 234000);
+        Auto f = new Auto("Audi", 'n', 2019, 300123);
+        System.out.println("va bien");
+        ConjuntoArreglo<Auto> cA = new ConjuntoArreglo();
+        System.out.println("va bien");
+                
+        cA.agrega(a);
+        cA.agrega(b);
+        cA.agrega(c);
+        cA.agrega(d);
+        cA.agrega(e);
+        cA.agrega(f);
+        System.out.println(analizaDeportivos(cA, 2));
+        */
+        
+        ColaA a = new ColaA();
+        a.agrega('a');
+        a.agrega('b');
+        a.agrega('c');
+        a.agrega('d');
+        a.agrega('e');
+        a.agrega('a');
+        a.agrega('f');
+        a.agrega('t');
+        a.agrega('e');
+        a.agrega('a');
+        a.agrega('c');
+        a.agrega('d');
+        System.out.println(a.imprime());
+        System.out.println(noHayVeinosIguales(a));
+        System.out.println(a.imprime());   
+        
+    }   
 }
