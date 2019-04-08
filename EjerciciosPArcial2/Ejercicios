@@ -1,0 +1,50 @@
+package ptscticar;
+
+public class Ptscticar {
+
+    public static String imprimeZigZag(int[][] sudoku, int tRen, int tCol){
+        StringBuilder res = new StringBuilder();
+        if(sudoku != null)
+            return imprimeZigZag(sudoku, res, tRen, tCol, 0, 0);
+        res.append("Es igual a null");
+        return res.toString();
+    }
+    private static String imprimeZigZag(int[][] sudoku, StringBuilder res,int tRen,int tCol, int i, int j){
+        //par es de derecha a izquierda
+        //impar es de izquierda a derecha
+        if(j == tCol || j == -1){
+            res.append("\n");
+            i++;
+            if(i % 2 == 0)
+                j = 0;
+            else
+                j = tCol - 1;
+        }
+        if(i < tRen){
+            res.append(sudoku[i][j] + "  ");
+            if(i % 2 == 0){
+                return imprimeZigZag(sudoku, res, tRen, tCol, i, j + 1);
+            }
+            else{
+                return imprimeZigZag(sudoku, res, tRen, tCol, i, j - 1);
+            }
+        }
+        
+        return res.toString();
+    }
+    
+    public static void main(String[] args) {
+        int [][] sudoku = {{1, 5, 0, 6, 0, 3, 0, 2, 9},
+                          {0, 0, 0, 0, 4, 0, 3, 7, 8},
+                          {3, 0, 0, 0, 0, 8, 0, 0, 0},
+                          {5, 1, 0, 0, 0, 0, 9, 0, 0},
+                          {0, 0, 2, 0, 0, 0, 6, 1, 0},
+                          {0, 0, 0, 3, 0, 0, 2, 0, 0},
+                          {7, 3, 5, 8, 0, 0, 0, 0, 6},
+                          {0, 8, 0, 0, 0, 0, 0, 4, 0},
+                          {0, 6, 9, 0, 0, 0, 8, 0, 0}};
+        
+        System.out.println(imprimeZigZag(sudoku, 9, 9));
+    }
+    
+}
