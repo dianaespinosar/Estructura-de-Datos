@@ -1,14 +1,15 @@
 package EstructurasEnlazadas;
 
-public class Nodo <T> {
+public class Nodo<T> {
+
     private T dato;
     private Nodo<T> sig;
-    
-    public Nodo(){
+
+    public Nodo() {
         sig = null;
     }
-    
-    public Nodo(T dato){
+
+    public Nodo(T dato) {
         this.dato = dato;
         this.sig = null;
     }
@@ -30,10 +31,9 @@ public class Nodo <T> {
     }
 
     public String toString() {
-        return dato.toString(); 
+        return dato.toString();
     }
-    
-    
-    
-    
+
 }
+
+
